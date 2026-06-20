@@ -1,0 +1,71 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+            
+body {
+    font-family: "DM Sans";
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+    padding-bottom: 130px;
+}
+.background {
+    position: fixed;
+    inset: 0;
+    background-image: url('assets/background.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+h1 { font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 40px; 
+}
+h2{ font-family: "Fraunces";
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+p { font-family: "DM Sans"; }
+
+header {
+    text-align: center;
+    padding: 60px 20px 60px;
+}
+
+img {
+    width: 300px;
+    height: 180px;
+    object-fit: cover;
+}
+
+section.start-here {
+    text-align: left;
+    padding: 10px 40px;
+}
+
+.card {
+    display: block;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    max-width: 300px;
+}
+
+.card h3,
+.card p {
+  padding: 0 1rem 1rem;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-top: 8px;
+    font-family: "DM Sans";
+    font-weight: 700;
+    padding-bottom: 6px;
+}
