@@ -57,6 +57,8 @@ section.start-here {
     text-decoration: none;
     max-width: 300px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    animation: cardFadeIn 0.5s ease forwards;
 }
 
 .card:hover {
@@ -113,4 +115,49 @@ main {
 
 .home-link:hover {
     color: white;
+}
+
+.home-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 1px;
+  background: white;
+  transition: width 0.25s ease;
+}
+
+.home-link:hover::after {
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+section.start-here h2 {
+  opacity: 0;
+  animation: cardFadeIn 0.5s ease forwards;
 }
