@@ -89,3 +89,8 @@ dd {
   margin-top: 4px;
   margin-left: 0;
 }
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+}
