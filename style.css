@@ -171,3 +171,40 @@ main p {
   justify-content: start;
   gap: 16px;
 }
+
+.figure-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    max-width: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figure-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.figure-card h3,
+.figure-card p {
+  padding: 0 1rem 1rem;
+}
+
+.figure-card h3 {
+    font-size: 16px;
+    margin-top: 8px;
+    font-family: "DM Sans";
+    font-weight: 700;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.figure-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
