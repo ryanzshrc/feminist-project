@@ -156,9 +156,6 @@ html {
   animation-delay: 0.2s;
 }
 
-.card-wrapper:nth-child(3) { animation-delay: 0.3s; }
-.card-wrapper:nth-child(4) { animation-delay: 0.4s; }
-
 section.start-here h2 {
   opacity: 0;
   animation: cardFadeIn 0.5s ease forwards;
