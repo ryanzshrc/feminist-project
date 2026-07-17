@@ -43,3 +43,22 @@ loginButton.addEventListener("click", () => {
         });
 
 });
+
+import { 
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+onAuthStateChanged(auth, (user) => {
+
+    const loginButton = document.getElementById("login");
+
+    if (user) {
+        loginButton.textContent = user.displayName;
+    } else {
+        loginButton.textContent = "Sign in";
+    }
+
+});
