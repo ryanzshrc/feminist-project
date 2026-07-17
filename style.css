@@ -32,8 +32,7 @@ p { font-family: "DM Sans"; }
 
 header {
     position: relative;
-    text-align: center;
-    padding: 60px 20px 60px;
+    padding: 60px 40px;
 }
 
 img {
@@ -207,4 +206,29 @@ main p {
     width: 200px;
     height: 200px;
     object-fit: cover;
+}
+
+.site-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.login-link {
+    position: absolute;
+    right: 40px;
+    top: 70px;
+    color: inherit;
+    text-decoration: none;
+    font-family: 'DM Sans';
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.login-link:hover {
+    opacity: 0.6;
+}
+
+.title-block {
+    text-align: center;
 }

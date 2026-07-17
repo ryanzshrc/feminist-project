@@ -1,7 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
+import { 
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyCFq5ezqQo2EXkRBX7dNWleaVJclzP3h9E",
   authDomain: "the-feminist-project.firebaseapp.com",
   projectId: "the-feminist-project",
   storageBucket: "the-feminist-project.firebasestorage.app",
@@ -10,6 +17,29 @@ const firebaseConfig = {
   measurementId: "G-5HRPDJ4GPS"
 };
 
+
 const app = initializeApp(firebaseConfig);
 
-console.log("Firebase connected!");
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+
+const loginButton = document.getElementById("login");
+
+
+loginButton.addEventListener("click", () => {
+
+    signInWithPopup(auth, provider)
+        .then((result) => {
+
+            const user = result.user;
+
+            console.log("Logged in:", user.displayName);
+            console.log(user.email);
+
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+});
