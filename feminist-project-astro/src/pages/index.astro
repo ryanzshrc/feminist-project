@@ -1,35 +1,21 @@
 ---
-import "../styles/style.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>The Feminist Project</title>
+<BaseLayout>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<section class="index">
+    <h2>Start here</h2>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
-	<link rel="shortcut icon" href="../../public/icon.ico">
-</head>
+    <!-- cards -->
 
-<body>
+</section>
 
-    <div class="background"></div>
+<section class="index">
+    <h2>Articles</h2>
 
-    <header class="site-header">
-        <div class="title-block">
-            <h1>The Feminist Project</h1>
-            <p style="font-size: 12px">
-                <i>On feminism, history, and the fight for equality</i>
-            </p>
-        </div>
+    <!-- cards -->
 
-        <a href="#" id="login" class="login-link">Sign in</a>
-    </header>
+</section>
 
-</body>
-</html>
+</BaseLayout>
