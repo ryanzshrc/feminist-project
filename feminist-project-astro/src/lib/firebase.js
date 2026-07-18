@@ -1,17 +1,9 @@
-import { initializeApp } from "firebase/app";
-
-import {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged
-} from "firebase/auth";
-
+import { initializeApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyCFq5ezqQo2EXkRBX7dNWleaVJclzP3h9E",
   authDomain: "the-feminist-project.firebaseapp.com",
   projectId: "the-feminist-project",
   storageBucket: "the-feminist-project.firebasestorage.app",
@@ -20,30 +12,10 @@ const firebaseConfig = {
   measurementId: "G-5HRPDJ4GPS"
 };
 
+const app = getApps().length
+    ? getApps()[0]
+    : initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
-
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-const db = getFirestore(app);
-
-
-const loginButton = document.getElementById("login");
-
-if (loginButton) {
-    loginButton.addEventListener("click", () => {
-        signInWithPopup(auth, provider)
-            .catch(console.error);
-    });
-
-    onAuthStateChanged(auth, (user) => {
-        loginButton.textContent = user
-            ? user.displayName
-            : "Sign in";
-    });
-}
-
-
-export { auth, provider, db };
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);

@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getFeaturedArticles } from "../lib/articles";
+
+const articles = await getFeaturedArticles();
 ---
 
 <BaseLayout>
@@ -39,7 +42,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <section class="index">
     <h2>Featured Articles</h2>
 
-    <!-- cards -->
+    {
+    articles.map(article => (
+        <div class="card-wrapper">
+            <a href="#" class="card">
+                <img src={article.image} />
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+            </a>
+        </div>
+    ))
+}
 
 </section>
 
