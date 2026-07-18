@@ -1,0 +1,234 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+            
+body {
+    font-family: "DM Sans";
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+    padding-bottom: 130px;
+}
+.background {
+    position: fixed;
+    inset: 0;
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+h1 { font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 40px; 
+}
+h2{ font-family: "Fraunces";
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+p { font-family: "DM Sans"; }
+
+header {
+    position: relative;
+    padding: 60px 40px;
+}
+
+img {
+    width: 300px;
+    height: 180px;
+    object-fit: cover;
+}
+
+section.index {
+    text-align: left;
+    padding: 10px 40px;
+}
+
+.card {
+    display: block;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    max-width: 300px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.card h3,
+.card p {
+  padding: 0 1rem 1rem;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-top: 8px;
+    font-family: "DM Sans";
+    font-weight: 700;
+    padding-bottom: 6px;
+}
+
+dl {
+    padding: 0 20px;
+    margin-top: 30px;
+}
+
+dt {
+    font-family: "DM Sans";
+    font-weight: 700;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+dd {
+  font-family: "DM Sans";
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+  margin-left: 0;
+}
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.home-link:hover {
+    color: white;
+}
+
+.home-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 1px;
+  background: white;
+  transition: width 0.25s ease;
+}
+
+.home-link:hover::after {
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-wrapper {
+  opacity: 0;
+  animation: cardFadeIn 0.5s ease forwards;
+  animation-delay: 0.2s;
+}
+
+section.index h2 {
+  opacity: 0;
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+main p {
+  margin-bottom: 20px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: start;
+  gap: 16px;
+}
+
+.figure-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    max-width: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figure-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.figure-card h3,
+.figure-card p {
+  padding: 0 1rem 1rem;
+}
+
+.figure-card h3 {
+    font-size: 16px;
+    margin-top: 8px;
+    font-family: "DM Sans";
+    font-weight: 700;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.figure-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.site-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.login-link {
+    position: absolute;
+    right: 40px;
+    top: 70px;
+    color: inherit;
+    text-decoration: none;
+    font-family: 'DM Sans';
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.login-link:hover {
+    opacity: 0.6;
+}
+
+.title-block {
+    text-align: center;
+}
