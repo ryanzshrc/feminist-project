@@ -1,7 +1,8 @@
 # The Feminist Project
 A project dedicated to feminism
 
-# Project has officialy been migrated to Astro!
+> [!NOTE]
+> # Project has officialy been migrated to Astro!
 
 ## License
 
