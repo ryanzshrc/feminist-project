@@ -32,7 +32,7 @@ p { font-family: "DM Sans"; }
 
 header {
     position: relative;
-    padding: 60px 40px;
+    padding: 15px 40px 25px;
 }
 
 img {
@@ -231,4 +231,35 @@ main p {
 
 .title-block {
     text-align: center;
+}
+
+.nav-bar {
+    display:flex;
+    justify-content:center;
+    gap:30px;
+
+    padding:10px 25px;
+    margin:30px auto 15px;
+
+    width:fit-content;
+
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:999px;
+
+    backdrop-filter:blur(10px);
+}
+
+.nav-bar a {
+    color:white;
+    text-decoration:none;
+    opacity:.75;
+    font-size:12px;
+
+    transition:.2s;
+}
+
+.nav-bar a:hover {
+    opacity:1;
 }
