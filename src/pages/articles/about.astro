@@ -2,7 +2,7 @@
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 ---
 
-<ArticleLayout back="/#start-here">
+<ArticleLayout back={`${import.meta.env.BASE_URL}/start-here`}>
     <main>
         <h2 style="text-align: left; margin-top: 50px; padding: 0 20px; font-size: 24px">About This Project</h2>
         <p style="padding: 0 20px;">The Feminist Project is a documentation of the past, present, and future of feminism.</p>
