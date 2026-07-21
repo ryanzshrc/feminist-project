@@ -2,7 +2,7 @@
 A project dedicated to feminism
 
 > [!NOTE]
-> # Project has officialy been migrated to Astro!
+> Project has officially been migrated to Astro!
 
 ## License
 
