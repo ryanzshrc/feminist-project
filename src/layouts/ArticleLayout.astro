@@ -1,6 +1,7 @@
 ---
 import "../styles/style.css";
 import Header from "../components/articleheader.astro";
+const { back } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@ import Header from "../components/articleheader.astro";
 
     <div class="background"></div>
 
-    <Header />
+    <Header back={back} />
 
     <slot />
 

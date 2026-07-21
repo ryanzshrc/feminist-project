@@ -2,13 +2,13 @@
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 ---
 
-<ArticleLayout back={`${import.meta.env.BASE_URL}/start-here`}>
+<ArticleLayout back={`${import.meta.env.BASE_URL}`}>
     <main>
         <h2 style="text-align: left; margin-top: 50px; padding: 0 20px; font-size: 24px">Prominent Figures</h2>
 
         <div class="card-wrapper">
             <a href={`${import.meta.env.BASE_URL}articles/figures/mary-wollstonecraft`} class="figure-card">
-                <img src={`${import.meta.env.BASE_URL}articles/figures/assets/mary-wollstonecraft.avif`} />
+                <img src={`${import.meta.env.BASE_URL}assets/figures/mary-wollstonecraft.avif`} />
                 <h3>Mary Wollstonecraft</h3>
             </a>
         </div>
