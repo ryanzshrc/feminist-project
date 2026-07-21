@@ -9,14 +9,27 @@ import { auth, provider } from "../lib/firebase.js";
 const loginButton = document.getElementById("login");
 
 if (loginButton) {
-    loginButton.addEventListener("click", () => {
-        signInWithPopup(auth, provider)
-            .catch(console.error);
-    });
 
     onAuthStateChanged(auth, (user) => {
-        loginButton.textContent = user
-            ? user.displayName
-            : "Sign in";
+
+        if (user) {
+            loginButton.textContent = "Account";
+
+            loginButton.onclick = () => {
+                window.location.href = `${import.meta.env.BASE_URL}account`;
+            };
+
+        } else {
+
+            loginButton.textContent = "Sign in";
+
+            loginButton.onclick = () => {
+                signInWithPopup(auth, provider)
+                    .catch(console.error);
+            };
+
+        }
+
     });
+
 }

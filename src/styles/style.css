@@ -214,21 +214,6 @@ main p {
     align-items: baseline;
 }
 
-.login-link {
-    position: absolute;
-    right: 40px;
-    top: 70px;
-    color: inherit;
-    text-decoration: none;
-    font-family: 'DM Sans';
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-.login-link:hover {
-    opacity: 0.6;
-}
-
 .title-block {
     text-align: center;
 }
