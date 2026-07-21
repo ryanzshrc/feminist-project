@@ -1,0 +1,15 @@
+---
+const { back = "/" } = Astro.props;
+---
+
+<header class="site-header">
+    <div class="title-block">
+        <h1>The Feminist Project</h1>
+        <a href={back} class="home-link">← Back</a>
+        <p style="font-size: 12px">
+            <i>On feminism, history, and the fight for equality</i>
+        </p>
+    </div>
+
+    <a href="#" id="login" class="login-link">Sign in</a>
+</header>

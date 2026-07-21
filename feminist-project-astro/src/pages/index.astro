@@ -13,7 +13,7 @@ const articles = await getFeaturedArticles();
     <div class="card-grid">
 
                     <div class="card-wrapper">
-                        <a href="articles/about.html" class="card">
+                        <a href="/articles/about" class="card">
                             <img src="start-here/about.jpg" alt="" />
                             <h3>About</h3>
                             <p style="font-size: 14px;">The purposes and goals of this project.</p>
@@ -21,7 +21,7 @@ const articles = await getFeaturedArticles();
                     </div>
 
                     <div class="card-wrapper"> 
-                        <a href="articles/important-terms.html" class="card">
+                        <a href="/articles/important-terms" class="card">
                             <img src="start-here/terms.jpg" alt="" />
                             <h3>Important Terms</h3>
                             <p style="font-size: 14px;">A glossary of important terms related to feminism</p>
@@ -29,7 +29,7 @@ const articles = await getFeaturedArticles();
                     </div>
 
                     <div class="card-wrapper"> 
-                        <a href="articles/prominent-figures.html" class="card">
+                        <a href="/articles/prominent-figures" class="card">
                             <img src="start-here/prominent-figures.jpg" alt="" />
                             <h3>Prominent Figures</h3>
                             <p style="font-size: 14px;">Profiles of influential feminist leaders and activists</p>
@@ -41,19 +41,6 @@ const articles = await getFeaturedArticles();
 
 <section class="index">
     <h2>Featured Articles</h2>
-
-    {
-    articles.map(article => (
-        <div class="card-wrapper">
-            <a href="#" class="card">
-                <img src={article.image} />
-                <h3>{article.title}</h3>
-                <p>{article.description}</p>
-            </a>
-        </div>
-    ))
-}
-
 </section>
 
 </BaseLayout>
