@@ -1,4 +1,12 @@
+---
+const { back = "/" } = Astro.props;
+---
+
 <nav class="nav-bar">
+
+    <a href={back} class="home-link">
+        ← Back
+    </a>
 
     <a href={`${import.meta.env.BASE_URL}`}>Home</a>
 

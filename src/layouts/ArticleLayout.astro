@@ -1,7 +1,7 @@
 ---
 import "../styles/style.css";
 import Header from "../components/articleheader.astro";
-import NavBar from "../components/navbar.astro";
+import NavBar from "../components/articlenavbar.astro";
 const { back } = Astro.props;
 ---
 
@@ -30,9 +30,9 @@ const { back } = Astro.props;
 
     <div class="background"></div>
 
-    <NavBar />
+    <NavBar back={back} />
 
-    <Header back={back} />
+    <Header />
 
     <slot />
 
