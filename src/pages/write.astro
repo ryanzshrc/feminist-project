@@ -10,22 +10,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p style="padding: 10px 0;">Submit an article for review. If it meets our editorial standards, it may be published on the site.</p>
         <p style="padding: 10px 0;">Kindly keep submissions respectful, and ensure that they are well-researched and relevant to feminism, women's history, gender equality, and related social issues. Spam, plagiarism, deliberately offensive or misleading content, AI generated and other low-effort submissions will not be considered.</p>
         <p style="padding: 10px 0;">You must be a registered user to submit an article.</p>
-        <textarea class="article-title" placeholder="Article Title"></textarea>
-        <textarea class="description-editor" placeholder="Write a brief description of your article..."></textarea>
+        <textarea id="article-title" class="article-title" placeholder="Article Title"></textarea>
+        <textarea id="article-description" class="description-editor" placeholder="Write a brief description of your article..."></textarea>
         <label class="image-upload">
             ↑
             <span>Upload Cover Image</span>
-            <input type="file" accept="image/*">
+            <input id="article-image" type="file" accept="image/*">
         </label>
     </div>
 
     <div class="editor-box">
-        <textarea class="article-editor" placeholder="Write your article here..."></textarea>
+        <textarea id="article-content" class="article-editor" placeholder="Write your article here..."></textarea>
         <div class="editor-buttons">
-            <button class="draft-button">Save as Draft</button>
-            <button class="submit-button">Submit Article</button>
+            <button id="save-draft" class="draft-button">Save as Draft</button>
+            <button id="submit-article" class="submit-button">Submit Article</button>
         </div>
     </div>
 </section>
 
 </BaseLayout>
+
+<script src="../scripts/write.js"></script>
