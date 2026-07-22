@@ -220,3 +220,42 @@ main p {
 .nav-bar a:hover {
     opacity:1;
 }
+
+.utility-page {
+    max-width: 750px;
+}
+
+.article-editor {
+    width: 100%;
+    min-height: 600px;
+
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 10px;
+
+    padding: 16px;
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+
+    resize: none;
+    outline: none;
+}
+
+.editor-box {
+    width: 750px;
+    margin: 20px 40px 20px auto;
+    flex-shrink: 0;
+}
+
+.write-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 10px 40px;
+}
