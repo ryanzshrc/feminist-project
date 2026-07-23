@@ -41,6 +41,5 @@ onAuthStateChanged(auth, (user) => {
     } else {
         loginButton.textContent = "Sign in";
     }
-
-    loginButton.classList.remove("auth-loading");
+    
 });

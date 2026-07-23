@@ -437,7 +437,3 @@ main p {
 .register-button:hover {
     background: rgba(255,255,255,0.1);
 }
-
-.auth-loading {
-    visibility: hidden;
-}
