@@ -33,3 +33,14 @@ if (loginButton) {
     });
 
 }
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+        loginButton.textContent = "Account";
+    } else {
+        loginButton.textContent = "Sign in";
+    }
+
+    loginButton.classList.remove("auth-loading");
+});
