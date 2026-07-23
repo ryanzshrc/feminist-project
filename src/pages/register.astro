@@ -1,0 +1,35 @@
+---
+import RegisterLayout from "../layouts/RegisterLayout.astro";
+---
+
+<RegisterLayout>
+
+<section class="register-page">
+
+    <h2 style="font-size: 24px">Complete your profile</h2>
+
+    <input
+        class="name-input"
+        id="display-name"
+        type="text"
+        placeholder="Display Name"
+    />
+
+    <input
+        class="name-input"
+        id="username"
+        type="text"
+        placeholder="Username"
+    />
+
+    <button class="register-button" id="finish-registration">
+        Complete Registration
+    </button>
+
+</section>
+
+<script type="module">
+    import "../scripts/register.js";
+</script>
+
+</RegisterLayout>
