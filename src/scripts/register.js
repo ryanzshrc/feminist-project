@@ -14,7 +14,6 @@ import { onAuthStateChanged } from "firebase/auth";
 
 const displayNameInput = document.getElementById("display-name");
 const usernameInput = document.getElementById("username");
-const bioInput = document.getElementById("bio");
 const finishButton = document.getElementById("finish-registration");
 
 onAuthStateChanged(auth, async (user) => {
@@ -44,7 +43,6 @@ finishButton.addEventListener("click", async () => {
 
     const displayName = displayNameInput.value.trim();
     const username = usernameInput.value.trim().toLowerCase();
-    const bio = bioInput.value.trim();
 
     if (!displayName || !username) {
         alert("Display name and username are required.");
@@ -72,7 +70,6 @@ finishButton.addEventListener("click", async () => {
 
         displayName,
         username,
-        bio,
 
         email: user.email,
         photoURL: user.photoURL,
