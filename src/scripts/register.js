@@ -27,7 +27,7 @@ onAuthStateChanged(auth, async (user) => {
     const userDoc = await getDoc(userRef);
 
     if (userDoc.exists()) {
-        window.location.href = "/account";
+        window.location.href = `${import.meta.env.BASE_URL}`;
         return;
     }
 
