@@ -80,6 +80,6 @@ finishButton.addEventListener("click", async () => {
 
     });
 
-    window.location.href = "/account";
+    window.location.href = `${import.meta.env.BASE_URL}`;
 
 });
