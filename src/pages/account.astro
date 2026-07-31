@@ -3,4 +3,316 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
+    <section class="account-page">
+        <div class="account-container">
+            <!-- User Profile Card -->
+            <article class="profile-card">
+                <div class="profile-header">
+                    <img
+                        id="profile-avatar"
+                        class="profile-avatar"
+                        src=""
+                        alt="Profile picture"
+                    />
+                    <div class="profile-info">
+                        <h2 id="display-name">Loading...</h2>
+                        <p id="username" class="username"></p>
+                        <p id="user-email" class="user-email"></p>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="edit-profile-btn" class="action-button secondary">Edit Profile</button>
+                    <button id="logout-btn" class="action-button danger">Sign Out</button>
+                </div>
+            </article>
+
+            <!-- Edit Profile Modal -->
+            <div id="edit-modal" class="modal hidden">
+                <div class="modal-backdrop"></div>
+                <div class="modal-content">
+                    <h3>Edit Profile</h3>
+                    <form id="edit-form">
+                        <div class="form-group">
+                            <label for="edit-display-name">Display Name</label>
+                            <input
+                                type="text"
+                                id="edit-display-name"
+                                class="form-input"
+                                placeholder="Your name"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-username">Username</label>
+                            <input
+                                type="text"
+                                id="edit-username"
+                                class="form-input"
+                                placeholder="username"
+                            />
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" id="cancel-edit" class="action-button secondary">Cancel</button>
+                            <button type="submit" class="action-button primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- User's Articles Section -->
+            <section class="articles-section">
+                <header class="section-header">
+                    <h2>Your Articles</h2>
+                    <a href="/write" class="write-link">Write New Article</a>
+                </header>
+                <div id="articles-grid" class="articles-grid">
+                    <p class="loading">Loading your articles...</p>
+                </div>
+                <div id="no-articles" class="no-articles hidden">
+                    <p>You haven't written any articles yet.</p>
+                    <a href="/write" class="action-button primary">Write Your First Article</a>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script type="module">
+        import { auth, db } from "../lib/firebase.js";
+        import {
+            onAuthStateChanged,
+            signOut,
+            updateProfile
+        } from "firebase/auth";
+        import {
+            doc,
+            getDoc,
+            updateDoc,
+            collection,
+            query,
+            where,
+            getDocs,
+            orderBy
+        } from "firebase/firestore";
+
+        const BASE_URL = import.meta.env.BASE_URL;
+
+        // DOM Elements
+        const profileAvatar = document.getElementById("profile-avatar");
+        const displayNameEl = document.getElementById("display-name");
+        const usernameEl = document.getElementById("username");
+        const userEmailEl = document.getElementById("user-email");
+        const editProfileBtn = document.getElementById("edit-profile-btn");
+        const logoutBtn = document.getElementById("logout-btn");
+        const editModal = document.getElementById("edit-modal");
+        const editForm = document.getElementById("edit-form");
+        const editDisplayName = document.getElementById("edit-display-name");
+        const editUsername = document.getElementById("edit-username");
+        const cancelEditBtn = document.getElementById("cancel-edit");
+        const articlesGrid = document.getElementById("articles-grid");
+        const noArticles = document.getElementById("no-articles");
+
+        let currentUser = null;
+        let userData = null;
+
+        // Initialize auth state listener
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = `${BASE_URL}`;
+                return;
+            }
+            currentUser = user;
+            await loadUserProfile(user);
+            await loadUserArticles(user.uid);
+        });
+
+        async function loadUserProfile(user) {
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const userDoc = await getDoc(userRef);
+
+                if (userDoc.exists()) {
+                    userData = userDoc.data();
+                    displayNameEl.textContent = userData.displayName || "No name";
+                    usernameEl.textContent = userData.username ? `@${userData.username}` : "";
+                    userEmailEl.textContent = userData.email || user.email;
+
+                    if (userData.photoURL) {
+                        profileAvatar.src = userData.photoURL;
+                    } else if (user.photoURL) {
+                        profileAvatar.src = user.photoURL;
+                    } else {
+                        profileAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.displayName || user.displayName || "User")}&background=1a1a2e&color=fff&size=128`;
+                    }
+                } else {
+                    // User exists in auth but not in firestore - redirect to register
+                    window.location.href = `${BASE_URL}register`;
+                }
+            } catch (error) {
+                console.error("Error loading profile:", error);
+                displayNameEl.textContent = "Error loading profile";
+            }
+        }
+
+        async function loadUserArticles(uid) {
+            try {
+                const articlesRef = collection(db, "articles");
+                const q = query(
+                    articlesRef,
+                    where("authorId", "==", uid),
+                    orderBy("createdAt", "desc")
+                );
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    articlesGrid.innerHTML = "";
+                    noArticles.classList.remove("hidden");
+                    return;
+                }
+
+                noArticles.classList.add("hidden");
+                articlesGrid.innerHTML = "";
+
+                snapshot.docs.forEach(doc => {
+                    const article = doc.data();
+                    const articleEl = createArticleCard(doc.id, article);
+                    articlesGrid.appendChild(articleEl);
+                });
+            } catch (error) {
+                console.error("Error loading articles:", error);
+                articlesGrid.innerHTML = '<p class="error">Failed to load articles</p>';
+            }
+        }
+
+        function createArticleCard(id, article) {
+            const card = document.createElement("article");
+            card.className = "article-card";
+
+            const statusClass = article.status === "published" ? "published" :
+                              article.status === "draft" ? "draft" : "pending";
+            const statusText = article.status === "published" ? "Published" :
+                             article.status === "draft" ? "Draft" : "Pending Review";
+
+            card.innerHTML = `
+                ${article.imageURL ? `<img src="${article.imageURL}" alt="${article.title}" class="article-image" />` : ''}
+                <div class="article-content">
+                    <h3 class="article-title">${article.title}</h3>
+                    ${article.description ? `<p class="article-description">${article.description}</p>` : ''}
+                    <div class="article-meta">
+                        <span class="article-status ${statusClass}">${statusText}</span>
+                        <span class="article-date">${formatDate(article.createdAt)}</span>
+                    </div>
+                    <div class="article-actions">
+                        <a href="${BASE_URL}articles/${id}" class="action-button secondary">View</a>
+                        <a href="${BASE_URL}write?id=${id}" class="action-button primary">Edit</a>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return "Unknown date";
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            });
+        }
+
+        // Edit Profile Modal
+        editProfileBtn.addEventListener("click", () => {
+            if (!userData) return;
+            editDisplayName.value = userData.displayName || "";
+            editUsername.value = userData.username || "";
+            editModal.classList.remove("hidden");
+            editDisplayName.focus();
+        });
+
+        function closeEditModal() {
+            editModal.classList.add("hidden");
+            editForm.reset();
+        }
+
+        cancelEditBtn.addEventListener("click", closeEditModal);
+        editModal.querySelector(".modal-backdrop").addEventListener("click", closeEditModal);
+
+        editForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const newDisplayName = editDisplayName.value.trim();
+            const newUsername = editUsername.value.trim().toLowerCase();
+
+            if (!newDisplayName || !newUsername) {
+                alert("Display name and username are required.");
+                return;
+            }
+
+            if (!/^[a-z0-9_]{3,20}$/.test(newUsername)) {
+                alert("Username must be 3–20 characters and contain only lowercase letters, numbers, and underscores.");
+                return;
+            }
+
+            try {
+                // Check if username is taken
+                const usernameQuery = query(
+                    collection(db, "users"),
+                    where("username", "==", newUsername)
+                );
+                const usernameSnapshot = await getDocs(usernameQuery);
+
+                if (!usernameSnapshot.empty) {
+                    const existingDoc = usernameSnapshot.docs[0];
+                    if (existingDoc.id !== currentUser.uid) {
+                        alert("That username is already taken.");
+                        return;
+                    }
+                }
+
+                // Update Firestore
+                const userRef = doc(db, "users", currentUser.uid);
+                await updateDoc(userRef, {
+                    displayName: newDisplayName,
+                    username: newUsername
+                });
+
+                // Update Firebase Auth profile
+                await updateProfile(currentUser, {
+                    displayName: newDisplayName
+                });
+
+                // Update UI
+                userData.displayName = newDisplayName;
+                userData.username = newUsername;
+                displayNameEl.textContent = newDisplayName;
+                usernameEl.textContent = `@${newUsername}`;
+
+                closeEditModal();
+                alert("Profile updated successfully!");
+            } catch (error) {
+                console.error("Error updating profile:", error);
+                alert("Failed to update profile. Please try again.");
+            }
+        });
+
+        // Logout
+        logoutBtn.addEventListener("click", async () => {
+            if (confirm("Are you sure you want to sign out?")) {
+                try {
+                    await signOut(auth);
+                    window.location.href = `${BASE_URL}`;
+                } catch (error) {
+                    console.error("Error signing out:", error);
+                    alert("Failed to sign out. Please try again.");
+                }
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !editModal.classList.contains("hidden")) {
+                closeEditModal();
+            }
+        });
+    </script>
 </BaseLayout>
