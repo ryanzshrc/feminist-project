@@ -862,3 +862,16 @@ main p {
         align-items: flex-start;
     }
 }
+
+.featured-book {
+    width: min(350px, 80vw);
+    height: auto;
+    display: block;
+    margin-top: 50px;
+    margin-left: 100px;
+    transition: transform 0.3s ease;
+}
+
+.featured-book:hover {
+    transform: translateY(-10px);
+}

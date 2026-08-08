@@ -1,46 +1,7 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { getFeaturedArticles } from "../lib/articles";
-
-const articles = await getFeaturedArticles();
+import NewBaseLayout from "../layouts/NewBaseLayout.astro";
 ---
 
-<BaseLayout>
-
-<section class="index">
-    <h2>Start here</h2>
-
-    <div class="card-grid">
-
-                    <div class="card-wrapper">
-                        <a href={`${import.meta.env.BASE_URL}articles/about`} class="card">
-                            <img src="start-here/about.jpg" alt="" />
-                            <h3>About</h3>
-                            <p style="font-size: 14px;">The purposes and goals of this project.</p>
-                        </a>
-                    </div>
-
-                    <div class="card-wrapper"> 
-                        <a href={`${import.meta.env.BASE_URL}articles/important-terms`} class="card">
-                            <img src="start-here/terms.jpg" alt="" />
-                            <h3>Important Terms</h3>
-                            <p style="font-size: 14px;">A glossary of important terms related to feminism</p>
-                        </a>
-                    </div>
-
-                    <div class="card-wrapper"> 
-                        <a href={`${import.meta.env.BASE_URL}articles/prominent-figures`} class="card">
-                            <img src="start-here/prominent-figures.jpg" alt="" />
-                            <h3>Prominent Figures</h3>
-                            <p style="font-size: 14px;">Profiles of influential feminist leaders and activists</p>
-                        </a>
-                    </div>
-
-                </div>
-</section>
-
-<section class="index">
-    <h2>Featured Articles</h2>
-</section>
-
-</BaseLayout>
+<NewBaseLayout>
+        <img class="featured-book" src={`${import.meta.env.BASE_URL}assets/vindicationmodel.png`} alt="The Feminist Project">
+</NewBaseLayout>
