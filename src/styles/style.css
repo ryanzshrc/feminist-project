@@ -875,3 +875,51 @@ main p {
 .featured-book:hover {
     transform: translateY(-10px);
 }
+.featured-book-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.featured-book-info h1 {
+    margin: 0;
+    font-size: 2em;
+    font-family: "Archivo Black";
+    opacity: 0.8;
+}
+
+.featured-book-info p {
+    margin-top: 10px;
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.download-button {
+    height: 45px;
+    padding: 0 24px;
+    margin-top: 20px;
+
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.download-button:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
+}
+
+@media print {
+  .page-break {
+    clear: both;
+    break-after: page;
+    page-break-after: always;
+  }
+}

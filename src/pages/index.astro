@@ -3,5 +3,19 @@ import NewBaseLayout from "../layouts/NewBaseLayout.astro";
 ---
 
 <NewBaseLayout>
-        <img class="featured-book" src={`${import.meta.env.BASE_URL}assets/vindicationmodel.png`} alt="The Feminist Project">
 </NewBaseLayout>
+
+<div class="featured-book-section">
+    <img
+        class="featured-book"
+        src={`${import.meta.env.BASE_URL}assets/vindicationmodel3.png`}
+        alt="A Vindication of the Rights of Woman"
+    />
+
+    <div class="featured-book-info">
+        <h1>A Vindication of the Rights of Woman</h1>
+        <p style="font-style: italic; opacity: 0.5;">Mary Wollstonecraft</p>
+        <p style="font-size: 15px; max-width: 1000px;">A 1792 essay by British philosopher and early feminist, Mary Wollstonecraft. One of the most influential works in feminist philosophy.</p>
+        <button id="download-book" class="download-button">Download Book</button>
+    </div>
+</div>
