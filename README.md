@@ -1,5 +1,5 @@
 # The Feminist Project
-A project dedicated to feminism
+An unserious project dedicated to feminism and cool stuff i think are related
 
 ## License
 

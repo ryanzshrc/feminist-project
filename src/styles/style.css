@@ -867,7 +867,7 @@ main p {
     width: min(350px, 80vw);
     height: auto;
     display: block;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 100px;
     transition: transform 0.3s ease;
 }
