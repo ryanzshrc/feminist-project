@@ -1,4 +1,4 @@
-import {
+/*import {
     signInWithPopup,
     onAuthStateChanged
 } from "firebase/auth";
@@ -53,3 +53,4 @@ if (loginButton) {
                     });
 
 }
+*/
