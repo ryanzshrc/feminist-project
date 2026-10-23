@@ -1,4 +1,4 @@
-import {
+/*import {
     doc,
     getDoc,
     setDoc,
@@ -82,4 +82,4 @@ finishButton.addEventListener("click", async () => {
 
     window.location.href = `${import.meta.env.BASE_URL}`;
 
-});
+});*/

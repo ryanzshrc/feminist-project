@@ -1,4 +1,4 @@
-import {
+/*import {
     collection,
     addDoc,
     serverTimestamp
@@ -67,4 +67,4 @@ document.getElementById("submit-article")
         alert("Something went wrong while submitting the article.");
     }
 
-});
+});*/
